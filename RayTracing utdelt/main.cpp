@@ -40,12 +40,12 @@ color ray_color(const ray& r, const hittable& seen, int depth) {
     return (1.0-t)*color(1.0, 1.0, 1.0) + t*color(0.5, 0.7, 1.0);
 }*/
 
-
+/*
 color ray_color(const ray& r) {
     vec3 unit_direction = unit_vector(r.direction());
-    auto t = 0.5*(unit_direction.y());// + 1.0);
+    auto t = 0.5*(unit_direction.y() + 1.0);
     return (1.0-t)*color(1.0, 1.0, 1.0) + t*color(0.5, 0.7, 1.0);
-}
+}*/
 
 int main(){
     // Image
@@ -70,15 +70,17 @@ int main(){
      for (int j = image_height-1; j >= 0; --j) {
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < image_width; ++i) {
-            color pixel_color;//(i, j, 0.25);
 
-            auto u = double(i) / (image_width-1);
-            auto v = double(j) / (image_height-1);
-            ray r = cam.get_ray(u, v);
-            pixel_color = ray_color(r); 
+            auto r = double(i) / (image_width-1);
+            auto g = double(j) / (image_height-1);
+            auto b = 0.25;
 
-            //cout << pixel_color << endl;
-            write_color(std::cout, pixel_color, samples_per_pixel);
+            int ir = static_cast<int>(255.999 * r);
+            int ig = static_cast<int>(255.999 * g);
+            int ib = static_cast<int>(255.999 * b);
+
+            std::cout << ir << ' ' << ig << ' ' << ib << '\n';
+
         }
     }
     std::cerr << "\nDone.\n";
