@@ -5,7 +5,7 @@
 #define VEC3_H
 
 
-
+using std::sqrt;
 
 class vec3{
 public:
