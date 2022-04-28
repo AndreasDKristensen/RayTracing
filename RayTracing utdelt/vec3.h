@@ -1,4 +1,3 @@
-#pragma once
 #include "std_lib_facilities.h"
 #include "utilities.h"
 #ifndef VEC3_H
@@ -110,5 +109,13 @@ vec3 random_in_unit_sphere() {
         if (p.length_squared() >= 1) continue;
         return p;
     }
+}
+
+vec3 random_unit_vector() {
+    return unit_vector(random_in_unit_sphere());
+}
+
+vec3 reflect(const vec3& v, const vec3& n) {
+    return v -2*dot(v,n)*n;
 }
 #endif

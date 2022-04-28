@@ -1,4 +1,3 @@
-#pragma once
 //#define HITTABLE_H
 #ifdef HITTABLE_H
 

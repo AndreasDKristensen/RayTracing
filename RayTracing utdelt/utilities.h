@@ -1,6 +1,5 @@
 #ifndef utilities_H
 #define utilities_H
-#pragma once
 
 #include "std_lib_facilities.h"
 // Constants

@@ -1,6 +1,5 @@
 #ifndef CAMERA_H
 #define CAMERA_H
-#pragma once
 
 #include "utilities.h"
 #include "vec3.h"
