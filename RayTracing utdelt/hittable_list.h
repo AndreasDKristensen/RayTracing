@@ -1,7 +1,6 @@
 //#define HITTABLE_LIST_H
 
 #ifdef HITTABLE_LIST_H
-#pragma once
 #include "hittable.h"
 
 

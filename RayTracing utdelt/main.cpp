@@ -1,4 +1,3 @@
-#include "std_lib_facilities.h"
 #include "color.h"
 #include "vec3.h"
 #include "ray.h"
@@ -7,9 +6,10 @@
 #include "sphere.h"
 #include "camera.h"
 
+#include <iostream>
 
 /*
-color ray_color(const ray& r, const hittable& seen, int depth) {
+color ray_color(const ray& r, const hittable& scene, int depth) {
     //hit_record rec;
 
   
@@ -18,7 +18,7 @@ color ray_color(const ray& r, const hittable& seen, int depth) {
     
     if (seen.hit(r, 0, infinity, rec)) {
         point3 target = rec.p + rec.normal + random_in_unit_sphere();
-        return 0.5 * ray_color(ray(rec.p, target - rec.p), seen, depth-1);
+        return 0.5 * ray_color(ray(rec.p, target - rec.p), scene, depth-1);
     }
     vec3 unit_direction = unit_vector(r.direction());
     auto t = 0.5*(unit_direction.y() + 1.0);
@@ -33,8 +33,10 @@ color ray_color(const ray& r) {
 }*/
 
 int main(){
+
+    std::ofstream ofs{"image.ppm"};
+
     // Image
-   
     
     const auto aspect_ratio = 16.0/9.0;
     const int image_width = 400;
@@ -42,16 +44,16 @@ int main(){
     const int samples_per_pixel = 50;
     const int max_depth = 50;
 
-    //seen
+    // Scene
 
-    //hittable_list seen;
+    //hittable_list scene;
     
 
     //Camera
     camera cam;
 
     // Render
-    std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
+    ofs << "P3\n" << image_width << ' ' << image_height << "\n255\n";
      for (int j = image_height-1; j >= 0; --j) {
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < image_width; ++i) {
@@ -64,7 +66,7 @@ int main(){
             int ig = static_cast<int>(255.999 * g);
             int ib = static_cast<int>(255.999 * b);
 
-            std::cout << ir << ' ' << ig << ' ' << ib << '\n';
+            ofs << ir << ' ' << ig << ' ' << ib << '\n';
 
         }
     }
